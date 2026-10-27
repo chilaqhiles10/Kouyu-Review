@@ -4,13 +4,13 @@
 <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>חזרה למבחן – חגי ישראל</title>
 <style>
-:root{font-family:Arial,'Noto Sans Hebrew',sans-serif;color:#1c2d3f;background:#f3f6fa}*{box-sizing:border-box}body{margin:0;min-height:100vh;display:grid;place-items:center;padding:25px}.panel{width:min(1050px,100%);min-height:560px;background:white;border-radius:28px;box-shadow:0 15px 55px #172c4820;padding:clamp(22px,5vw,65px);display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;gap:22px}.eyebrow{font-weight:700;color:#54718d;font-size:clamp(18px,2vw,24px)}h1{font-size:clamp(34px,5vw,58px);margin:0}.question{font-size:clamp(34px,5.3vw,64px);font-weight:700;line-height:1.45;max-width:950px;flex:1;display:grid;place-items:center}.buttons{display:flex;gap:16px;justify-content:center;flex-wrap:wrap;width:100%}button{font:700 clamp(18px,2vw,25px) Arial,sans-serif;border:0;border-radius:16px;padding:17px 30px;cursor:pointer;background:#2469b1;color:white;min-width:175px}button:hover{filter:brightness(.92)}button.secondary{background:#e8eef5;color:#243e58}button:disabled{opacity:.35;cursor:not-allowed}.note{color:#61758b;font-size:18px}.progress{width:min(500px,100%);height:9px;border-radius:20px;background:#e7eef5;overflow:hidden}.fill{height:100%;background:#27a49c;transition:width .2s}.hidden{display:none!important}.top{display:flex;justify-content:space-between;width:100%;gap:15px;align-items:center}.top button{min-width:0;padding:12px 17px;font-size:17px}@media(max-width:600px){.panel{min-height:75vh}.top{flex-wrap:wrap;justify-content:center}.question{font-size:33px}button{width:100%}}
+:root{font-family:Arial,'Noto Sans Hebrew',sans-serif;color:#1c2d3f;background:#f3f6fa}*{box-sizing:border-box}body{margin:0;min-height:100vh;display:grid;place-items:center;padding:25px}.panel{width:min(1050px,100%);min-height:560px;background:white;border-radius:28px;box-shadow:0 15px 55px #172c4820;padding:clamp(22px,5vw,65px);display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;gap:22px}.eyebrow{font-weight:700;color:#54718d;font-size:clamp(18px,2vw,24px)}h1{font-size:clamp(34px,5vw,58px);margin:0}.topic{font-size:clamp(19px,2.2vw,27px);font-weight:700;color:#54718d;margin-top:12px}.question{font-size:clamp(34px,5.3vw,64px);font-weight:700;line-height:1.45;max-width:950px;flex:1;display:grid;place-items:center}.buttons{display:flex;gap:16px;justify-content:center;flex-wrap:wrap;width:100%}button{font:700 clamp(18px,2vw,25px) Arial,sans-serif;border:0;border-radius:16px;padding:17px 30px;cursor:pointer;background:#2469b1;color:white;min-width:175px}button:hover{filter:brightness(.92)}button.secondary{background:#e8eef5;color:#243e58}button:disabled{opacity:.35;cursor:not-allowed}.note{color:#61758b;font-size:18px}.progress{width:min(500px,100%);height:9px;border-radius:20px;background:#e7eef5;overflow:hidden}.fill{height:100%;background:#27a49c;transition:width .2s}.hidden{display:none!important}.top{display:flex;justify-content:space-between;width:100%;gap:15px;align-items:center}.top button{min-width:0;padding:12px 17px;font-size:17px}@media(max-width:600px){.panel{min-height:75vh}.top{flex-wrap:wrap;justify-content:center}.topic{font-size:clamp(19px,2.2vw,27px);font-weight:700;color:#54718d;margin-top:12px}.question{font-size:33px}button{width:100%}}
 </style>
 </head>
 <body>
 <main class="panel">
 <section id="home"><div class="eyebrow">עברית מדוברת · ביניים א׳</div><h1>חזרה למבחן האמצע</h1><p class="note">38 שאלות · 19 שאלות לכל קבוצה</p><div class="buttons"><button onclick="openGroup(0)">קבוצה א׳</button><button onclick="openGroup(1)">קבוצה ב׳</button></div><p class="note">החלוקה נשמרת עד ללחיצה על ״חלוקה חדשה״.</p><button class="secondary" onclick="newRound()">חלוקה חדשה</button></section>
-<section id="play" class="hidden" style="width:100%;flex:1;display:flex;flex-direction:column;align-items:center;gap:22px"><div class="top"><button class="secondary" onclick="goHome()">↩ בחירת קבוצה</button><span class="eyebrow" id="groupName"></span><span class="eyebrow" id="count"></span></div><div class="progress"><div class="fill" id="fill"></div></div><div class="question" id="question"></div><div class="buttons"><button class="secondary" id="prev" onclick="step(-1)">→ שאלה קודמת</button><button id="next" onclick="step(1)">שאלה הבאה ←</button></div></section>
+<section id="play" class="hidden" style="width:100%;flex:1;display:flex;flex-direction:column;align-items:center;gap:22px"><div class="top"><button class="secondary" onclick="goHome()">↩ בחירת קבוצה</button><span class="eyebrow" id="groupName"></span><span class="eyebrow" id="count"></span></div><div class="progress"><div class="fill" id="fill"></div></div><div class="topic" id="topic" aria-label="נושא השאלה"></div><div class="question" id="question"></div><div class="buttons"><button class="secondary" id="prev" onclick="step(-1)">→ שאלה קודמת</button><button id="next" onclick="step(1)">שאלה הבאה ←</button></div></section>
 <section id="finish" class="hidden"><div class="eyebrow" id="finishGroup"></div><h1>כל הכבוד! סיימתם 🎉</h1><div class="buttons"><button onclick="goHome()">בחירת קבוצה</button><button class="secondary" onclick="restartGroup()">חזרה לשאלה הראשונה</button><button class="secondary" onclick="newRound()">חלוקה חדשה</button></div></section>
 </main>
 <script>
@@ -36,6 +36,25 @@ const questions=[
 'מה דומה בין חשבון נפש ביום כיפור לבין התחלה חדשה בראש השנה?',
 'האם אפשר לקשר בין מה שלומדים מחנוכה ומה שלומדים מפסח?'
 ];
+const questionTopics=[
+'ראש השנה','ראש השנה','ראש השנה',
+'יום כיפור','יום כיפור','יום כיפור',
+'סוכות','סוכות','סוכות',
+'חנוכה','חנוכה','חנוכה',
+'פורים','פורים','פורים',
+'פסח','פסח','פסח',
+'ראש השנה · התחלות ושינוי','ראש השנה · התחלות ושינוי',
+'יום כיפור · חשבון נפש','יום כיפור · חשבון נפש',
+'סוכות · בית ושייכות','סוכות · בית ושייכות',
+'חנוכה · הכרת תודה','חנוכה · הכרת תודה',
+'פורים · זהות ומסכות','פורים · זהות ומסכות',
+'פסח · חירות','פסח · חירות',
+'חנוכה · להפיץ אור','סוכות · בית ושייכות',
+'פורים · מסכות בחיי היום־יום','פסח · חירות',
+'פסח · בינה מלאכותית וחופש','פורים · זהות ומסכות',
+'ראש השנה ויום כיפור · השוואה','חנוכה ופסח · השוואה'
+];
+function topicFor(q){const i=questions.indexOf(q);return i<0?'נושא השאלה':questionTopics[i]}
 const storageKey='hebrewHolidayGameRoundV1';let groups=[],positions=[0,0],current=0;
 function shuffle(a){for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]];}return a}
 function makeRound(){const shuffled=shuffle([...questions]);groups=[shuffled.slice(0,19),shuffled.slice(19)];positions=[0,0];save()}
@@ -43,7 +62,7 @@ function save(){try{sessionStorage.setItem(storageKey,JSON.stringify({groups,pos
 function load(){try{const d=JSON.parse(sessionStorage.getItem(storageKey));if(d&&Array.isArray(d.groups)&&d.groups.length===2&&d.groups.every(g=>g.length===19)){groups=d.groups;positions=d.positions||[0,0];return}}catch(e){}makeRound()}
 function show(id){for(const x of ['home','play','finish'])document.getElementById(x).classList.toggle('hidden',x!==id)}
 function openGroup(i){current=i;render()}
-function render(){const i=positions[current],arr=groups[current];if(i>=arr.length){document.getElementById('finishGroup').textContent=current===0?'קבוצה א׳':'קבוצה ב׳';show('finish');return}document.getElementById('groupName').textContent=current===0?'קבוצה א׳':'קבוצה ב׳';document.getElementById('count').textContent=`שאלה ${i+1} מתוך ${arr.length}`;document.getElementById('question').textContent=arr[i];document.getElementById('fill').style.width=((i+1)/arr.length*100)+'%';document.getElementById('prev').disabled=i===0;document.getElementById('next').textContent=i===arr.length-1?'סיום ✓':'שאלה הבאה ←';show('play')}
+function render(){const i=positions[current],arr=groups[current];if(i>=arr.length){document.getElementById('finishGroup').textContent=current===0?'קבוצה א׳':'קבוצה ב׳';show('finish');return}document.getElementById('groupName').textContent=current===0?'קבוצה א׳':'קבוצה ב׳';document.getElementById('count').textContent=`שאלה ${i+1} מתוך ${arr.length}`;document.getElementById('topic').textContent=topicFor(arr[i]);document.getElementById('question').textContent=arr[i];document.getElementById('fill').style.width=((i+1)/arr.length*100)+'%';document.getElementById('prev').disabled=i===0;document.getElementById('next').textContent=i===arr.length-1?'סיום ✓':'שאלה הבאה ←';show('play')}
 function step(n){positions[current]=Math.max(0,Math.min(groups[current].length,positions[current]+n));save();render()}
 function goHome(){show('home')}
 function restartGroup(){positions[current]=0;save();render()}
